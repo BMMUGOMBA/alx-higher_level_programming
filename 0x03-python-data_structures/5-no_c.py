@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#Batsirai M Mugomba
 
 
 def no_c(my_string):
