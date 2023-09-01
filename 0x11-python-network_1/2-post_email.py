@@ -1,18 +1,21 @@
 #!/usr/bin/python3
-"""Sends a POST request to a given URL with a given email.
-Usage: ./2-post_email.py <URL> <email>
-  - Displays the body of the response.
+"""Make a POST request
 """
-import sys
-import urllib.parse
+
 import urllib.request
+from sys import argv
 
+if __name__ == '__main__':
+    url = argv[1]
+    email = {'email': argv[2]}
 
-if __name__ == "__main__":
-    url = sys.argv[1]
-    value = {"email": sys.argv[2]}
-    data = urllib.parse.urlencode(value).encode("ascii")
+    email = urllib.parse.urlencode(email)
+    email = email.encode('utf-8')
 
-    request = urllib.request.Request(url, data)
+    # make request object
+    request = urllib.request.Request(url, email)
+
     with urllib.request.urlopen(request) as response:
-        print(response.read().decode("utf-8"))
+        response = response.read()
+        response = response.decode('utf-8')
+        print(response)
